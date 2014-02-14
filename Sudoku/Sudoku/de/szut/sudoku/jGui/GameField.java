@@ -2,11 +2,14 @@ package de.szut.sudoku.jGui;
 
 import java.awt.Color;
 import java.awt.Font;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class GameField extends JPanel {
+import de.szut.sudoku.game.IUI;
+
+public class GameField extends JPanel implements IUI{
 
 	private JPanel contentPane;
 	private JLabel fieldLbl;
@@ -19,8 +22,7 @@ public class GameField extends JPanel {
 	
 	public GameField() {
 		setSize(500, 500);
-		contentPane = new JPanel();
-		contentPane.setLayout(null);		
+		setLayout(null);		
 		
 		spacey = 0;
 		for (x = 0; x < 9; x++){
@@ -41,14 +43,24 @@ public class GameField extends JPanel {
 				fieldLbl.setHorizontalAlignment(SwingConstants.CENTER);
 				fieldLbl.setFont(new Font("Tahoma", Font.PLAIN, 19));
 				fieldLbl.setForeground(Color.GREEN);
-				add(fieldLbl);
 				fieldLbl.addMouseListener(listen);
+				add(fieldLbl);
 				fieldList[x][y] = fieldLbl;
 			}
 		}
 	}
 	public JPanel getField(){
 		return this;
+	}
+	@Override
+	public void showField() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void sendData() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

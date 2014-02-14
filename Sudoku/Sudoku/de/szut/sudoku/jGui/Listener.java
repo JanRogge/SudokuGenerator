@@ -7,11 +7,9 @@ import javax.swing.JLabel;
 
 public class Listener extends MouseAdapter{
 	
-	protected void FieldLbl_mouseClicked(MouseEvent Clk) {
-		JLabel test = (JLabel) Clk.getSource();
-		test.setBackground(Color.GRAY);
-		test.setText("5");
-		
+	protected void FieldLbl_mouseClicked(MouseEvent clk) {
+		JLabel test = (JLabel) clk.getSource();
+		test.setBackground(Color.GRAY);		
 	}
 	
 }
