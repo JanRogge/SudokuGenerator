@@ -51,10 +51,23 @@ public class Console implements IUI{
 		}
 	}
 	public void setNumber(){
-		while (gamefinish == false) {
+		while (!gamefinish) {
 			Scanner scan = new Scanner(System.in);
-			x = scan.nextInt();
-			y = scan.nextInt();
+			try{
+				System.out.print("Bitte geben die X-Coordinate ein:");
+				x = scan.nextInt();
+			}
+			catch(Exception ex){
+				System.out.println("Nur Zahlen:");
+			}
+			try{
+				System.out.print("Bitte geben die Y-Coordinate ein:");
+				y = scan.nextInt();
+				}
+				catch(Exception ex){
+					System.out.println("Nur Zahlen:");
+				}
+			System.out.println("Bitte geben die Zahl ein:");
 			number = scan.next();
 			x = x * 2;
 			y = y * 2 - 1;
@@ -68,9 +81,11 @@ public class Console implements IUI{
 		int [][] playableField = data.getField();
 		for (x = 0; x < 9; x++){
 			for (y = 0; y < 9; y++){
-				newx = (x+1) * 2 - 1;
-				newy = (y+1) * 2;
-				spielbrett[newx][newy] = (char) ((playableField[x][y]+"").charAt(0));
+				if (playableField[x][y] != 0){
+					newx = (x+1) * 2 - 1;
+					newy = (y+1) * 2;
+					spielbrett[newx][newy] = (char) ((playableField[x][y]+"").charAt(0));
+				}
 			}
 		}
 		printField();
