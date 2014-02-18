@@ -1,4 +1,6 @@
 package de.szut.sudoku.game;
 
-public interface IUI {
+import java.util.Observer;
+
+public interface IUI extends Observer{
 }
