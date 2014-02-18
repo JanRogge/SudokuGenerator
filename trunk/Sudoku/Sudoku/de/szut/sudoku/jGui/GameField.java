@@ -36,7 +36,7 @@ public class GameField extends JPanel implements IUI{
 					spacex = spacex + 10;
 				}
 
-				//fieldLbl.disable();
+				fieldLbl.disable();
 				fieldLbl.setLocation(10 + (x* 45) + spacey, 10 + (y *45) + spacex);
 				fieldLbl.setSize(40, 40);
 				fieldLbl.setOpaque(true);
@@ -54,15 +54,5 @@ public class GameField extends JPanel implements IUI{
 	}
 	public JLabel[][] getField(){
 		return fieldList;
-	}
-	@Override
-	public void showField() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void sendData() {
-		// TODO Auto-generated method stub
-		
 	}
 }

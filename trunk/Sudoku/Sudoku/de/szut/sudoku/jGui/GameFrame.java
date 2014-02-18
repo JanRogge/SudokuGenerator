@@ -14,17 +14,4 @@ public class GameFrame extends JFrame implements IUI{
 		setLayout(null);
 		setContentPane(new GameField());
 	}
-
-	@Override
-	public void showField() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void sendData() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
