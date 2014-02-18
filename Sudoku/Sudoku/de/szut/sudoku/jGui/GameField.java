@@ -2,7 +2,6 @@ package de.szut.sudoku.jGui;
 
 import java.awt.Color;
 import java.awt.Font;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -11,7 +10,6 @@ import de.szut.sudoku.game.IUI;
 
 public class GameField extends JPanel implements IUI{
 
-	private JPanel contentPane;
 	private JLabel fieldLbl;
 	private int spacex;
 	private int spacey;
@@ -19,6 +17,7 @@ public class GameField extends JPanel implements IUI{
 	private int y;
 	private JLabel[][] fieldList = new JLabel[9][9];
 	private Listener listen = new Listener();
+	private LabelKey key = new LabelKey(this);
 	
 	public GameField() {
 		setSize(500, 500);
@@ -44,6 +43,7 @@ public class GameField extends JPanel implements IUI{
 				fieldLbl.setFont(new Font("Tahoma", Font.PLAIN, 19));
 				fieldLbl.setForeground(Color.GREEN);
 				fieldLbl.addMouseListener(listen);
+				fieldLbl.addKeyListener(key);
 				add(fieldLbl);
 				fieldList[x][y] = fieldLbl;
 			}
@@ -62,5 +62,4 @@ public class GameField extends JPanel implements IUI{
 		// TODO Auto-generated method stub
 		
 	}
-
 }

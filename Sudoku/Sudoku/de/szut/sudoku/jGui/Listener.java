@@ -6,10 +6,11 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 
 public class Listener extends MouseAdapter{
-	
-	protected void FieldLbl_mouseClicked(MouseEvent clk) {
+	public void mouseClicked(MouseEvent clk) {
 		JLabel test = (JLabel) clk.getSource();
-		test.setBackground(Color.GRAY);		
+		test.requestFocusInWindow();
+		if (test.requestFocusInWindow()){
+			test.setBackground(Color.gray);
+		}
 	}
-	
 }
