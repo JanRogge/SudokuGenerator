@@ -59,6 +59,7 @@ public class GameField extends JFrame implements IUI{
 			}
 		}
 	}
+	@SuppressWarnings("deprecation")
 	@Override
 	public void update(Observable o, Object arg) {
 		data = (GameData) arg;

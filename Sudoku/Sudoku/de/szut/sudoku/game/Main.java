@@ -11,7 +11,6 @@ public class Main {
 	public static void main(String[] args) {
 		GenerateSudoku sudo = new GenerateSudoku();
 		GameData data = new GameData();
-		data.test();
 		Logic logic = new Logic();
 		//IUI ui = new GameField();
 		IUI ui = new Console();
