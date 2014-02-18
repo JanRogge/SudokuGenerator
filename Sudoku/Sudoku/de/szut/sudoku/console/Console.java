@@ -56,16 +56,4 @@ public class Console implements IUI{
 			printField();
 		}
 	}
-	@Override
-	public void showField() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void sendData() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
