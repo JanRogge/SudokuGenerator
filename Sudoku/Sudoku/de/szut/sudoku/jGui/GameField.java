@@ -2,14 +2,18 @@ package de.szut.sudoku.jGui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.Observable;
+
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import de.szut.sudoku.game.IUI;
+import de.szut.sudoku.logic.GameData;
 
-public class GameField extends JPanel implements IUI{
+public class GameField extends JFrame implements IUI{
 
 	private JLabel fieldLbl;
 	private int spacex;
@@ -19,9 +23,14 @@ public class GameField extends JPanel implements IUI{
 	private JLabel[][] fieldList = new JLabel[9][9];
 	private Listener listen = new Listener();
 	private LabelKey key = new LabelKey();
+	private GameData data;
 	
 	public GameField() {
-		setSize(500, 500);
+		setTitle("Sudoku");
+		setVisible(true);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 445, 500);
 		setLayout(null);		
 		
 		spacey = 0;
@@ -31,12 +40,10 @@ public class GameField extends JPanel implements IUI{
 				spacey = spacey + 10;
 			}
 			for (y = 0; y < 9; y++){
-				fieldLbl= new JLabel();
+				fieldLbl= new JLabel("");
 				if (y % 3 == 0 && y != 0){
 					spacex = spacex + 10;
 				}
-
-				fieldLbl.disable();
 				fieldLbl.setLocation(10 + (x* 45) + spacey, 10 + (y *45) + spacex);
 				fieldLbl.setSize(40, 40);
 				fieldLbl.setOpaque(true);
@@ -47,12 +54,24 @@ public class GameField extends JPanel implements IUI{
 				fieldLbl.setForeground(Color.blue);
 				fieldLbl.addMouseListener(listen);
 				fieldLbl.addKeyListener(key);
-				add(fieldLbl);
 				fieldList[x][y] = fieldLbl;
+				add(fieldLbl);
 			}
 		}
 	}
-	public JLabel[][] getField(){
-		return fieldList;
+	@Override
+	public void update(Observable o, Object arg) {
+		data = (GameData) arg;
+		int [][] playableField = data.getField();
+		for (x = 0; x < 9; x++){
+			for (y = 0; y < 9; y++){
+				if (playableField[x][y] != 0){
+					fieldList[x][y].setText(playableField[x][y]+"");
+					fieldList[x][y].disable();
+				}
+			}
+		}
+		revalidate();
+		repaint();
 	}
 }
