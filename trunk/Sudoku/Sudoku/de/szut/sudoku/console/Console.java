@@ -1,10 +1,14 @@
 package de.szut.sudoku.console;
 
-import javax.swing.JOptionPane;
+import java.util.Scanner;
 
 import de.szut.sudoku.game.IUI;
 
 public class Console implements IUI{
+	private boolean gamefinish = false;
+	private int y;
+	private int x;
+	private String number;
 	private char[][] spielbrett = {
 			{ ' ', '╔', '═', '═', '═', '═', '═', '═', '═', '═', '═', '═','═', '═', '═', '═', '═', '═', '═', '╗' },
 			{ '1', '║', ' ', '│', ' ', '│', ' ', '║', ' ', '│', ' ', '│',' ', '║', ' ', '│', ' ', '│', ' ', '║' },
@@ -41,16 +45,14 @@ public class Console implements IUI{
 		}
 	}
 	public void setNumber(){
-		boolean kingcheck = false;
-		int Y = 0;
-		int X = 0;
-		while (kingcheck == false) {
-			X = Integer.parseInt(JOptionPane.showInputDialog(null," geben sie die Spalten-Koordinate ihres Königs an: ","Spalten-Koordinate",JOptionPane.PLAIN_MESSAGE));
-			Y = Integer.parseInt(JOptionPane.showInputDialog(null," geben sie die Zeilen-Koordinate ihres Königs an: ","Zeilen-Koordinate",JOptionPane.PLAIN_MESSAGE));
-			X = X * 2;
-			Y = Y * 2 - 1;
-			spielbrett[Y][X] = '1';
-			kingcheck = true;
+		while (gamefinish == false) {
+			Scanner scan = new Scanner(System.in);
+			x = scan.nextInt();
+			y = scan.nextInt();
+			number = scan.next();
+			x = x * 2;
+			y = y * 2 - 1;
+			spielbrett[y][x] = '1';
 			printField();
 		}
 	}
