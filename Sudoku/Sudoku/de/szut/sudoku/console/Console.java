@@ -72,7 +72,12 @@ public class Console implements IUI{
 			}
 			x = x * 2;
 			y = y * 2 - 1;
-			spielbrett[y][x] = number.charAt(0); //Fügt die Zahl dem Spielfeld hinzu
+			try{
+				spielbrett[y][x] = number.charAt(0); //Fügt die Zahl dem Spielfeld hinzu
+			}
+			catch(Exception ex){
+				System.out.println("Die bist außerhalb des Arrays");
+			}
 			printField();
 		}
 	}
