@@ -37,12 +37,9 @@ public class Console implements IUI{
 	};
 	private int newx;
 	private int newy;
-	private boolean test;
 	public Console(){
-		//printField();
-		//setNumber();
 	}
-	public void printField(){
+	public void printField(){ //Gibt das Spielfeld aus
 		for (int i = 0; i < 20; i++) {
 			for (int j = 0; j < 20; j++) {
 				System.out.print(spielbrett[i][j]);
@@ -51,34 +48,39 @@ public class Console implements IUI{
 		}
 	}
 	public void setNumber(){
-		while (!gamefinish) {
-			Scanner scan = new Scanner(System.in);
+		while (!gamefinish) { //Eingabe fordern solange des Spiel nicht beendet worde
+			@SuppressWarnings("resource")
+			Scanner scan = new Scanner(System.in); //Öffnet den Scanner
 			try{
-				System.out.print("Bitte geben die X-Coordinate ein:");
-				x = scan.nextInt();
+				System.out.print("Bitte geben die X-Coordinate ein. (Oder geben sie für eine der folgenden Zahlen einen Null ein um das Programm zu beenden.)");
+				x = scan.nextInt(); //Eingabe für die X Position
 			}
 			catch(Exception ex){
 				System.out.println("Nur Zahlen:");
 			}
 			try{
 				System.out.print("Bitte geben die Y-Coordinate ein:");
-				y = scan.nextInt();
+				y = scan.nextInt(); //Eingabe für die Y Position
 				}
-				catch(Exception ex){
+			catch(Exception ex){
 					System.out.println("Nur Zahlen:");
-				}
+			}
 			System.out.println("Bitte geben die Zahl ein:");
-			number = scan.next();
+			number = scan.next(); //Eingabe für die Zahl
+			if (x == 0|| y == 0|| number == "0"){ //Beendet das Programm wenn eine 0 eingeben wird
+				System.exit(0);
+			}
 			x = x * 2;
 			y = y * 2 - 1;
-			spielbrett[y][x] = number.charAt(0);
+			spielbrett[y][x] = number.charAt(0); //Fügt die Zahl dem Spielfeld hinzu
 			printField();
 		}
 	}
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		data = (GameData) arg1;
-		int [][] playableField = data.getField();
+		int [][] playableField = data.getplayableField();
+		//Setzt die Felder vom Generierten Feld
 		for (x = 0; x < 9; x++){
 			for (y = 0; y < 9; y++){
 				if (playableField[x][y] != 0){
