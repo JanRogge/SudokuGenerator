@@ -2,9 +2,9 @@ package de.szut.sudoku.logic;
 
 public class GenerateSudoku {
 
-	private boolean[][] colum = new boolean[9][10]; //
-	private boolean[][] row = new boolean[9][10]; //
-	private boolean[][] box = new boolean[9][10]; //Ein Array 
+	private boolean[][] colum = new boolean[9][10]; //Ein Array aus Booleans in dem jede zahl ihr eigendes true/false in der spalte hat
+	private boolean[][] row = new boolean[9][10]; //Ein Array aus Booleans in dem jede zahl ihr eigendes true/false in der zeile hat
+	private boolean[][] box = new boolean[9][10]; //Ein Array aus Booleans in dem jede zahl ihr eigendes true/false in der box hat
 	private int[][] field = new int[9][9]; //Array in das das Sudoku-Feld generiert wird
 	private int[][] partfield = new int[9][9]; //Array zum eintragen der vorübergehenden Zahlen
 	private int[][] solvedfield = new int[9][9]; //Array für das spätere vollständige Feld
@@ -35,9 +35,6 @@ public class GenerateSudoku {
 			}
 		}
 	}
-	private boolean isClear(int number) {
-		return number <= 0 || number > 9;
-	}
 	public boolean solve(int counter) { //Solver um zu überprüfen ob das Sudoku lösbar ist
 		int colum = counter / 9;
 		int row = counter % 9;
@@ -67,10 +64,6 @@ public class GenerateSudoku {
 			}
 		}
 		return false; //Zurückgeben des Wertes False weil das Sudoku nicht lösbar ist
-	}
-
-	private int getBox(int colum, int row) {
-		return 3 * (colum / 3) + (row / 3);
 	}
 	public void genSudoku() { //Erstellen des Sudokus
 		do {
@@ -109,6 +102,12 @@ public class GenerateSudoku {
 				solvedfield[colum][row] =field[colum][row]; //Kopieren des Arrays
 			}
 		}
+	}
+	private boolean isClear(int number) {
+		return number <= 0 || number > 9;
+	}
+	private int getBox(int colum, int row) {
+		return 3 * (colum / 3) + (row / 3);
 	}
 	public int[][] getsolvedfield(){ //Returned das gelöste Feld
 		return solvedfield;
