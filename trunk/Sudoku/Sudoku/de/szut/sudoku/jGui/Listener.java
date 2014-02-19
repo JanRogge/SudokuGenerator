@@ -9,8 +9,9 @@ public class Listener extends MouseAdapter{
 	private JLabel oldLable;
 	private JLabel newLable;
 	public void mouseClicked(MouseEvent clk) {
-		newLable = (JLabel) clk.getSource();
-		newLable.requestFocusInWindow();
+		newLable = (JLabel) clk.getSource(); //Source vom geclickten Label
+		newLable.requestFocusInWindow(); //Setzt das Label in den Focus
+		//Makiert das geclickte Label
 		if (newLable.isEnabled() != false){
 			if (newLable == oldLable){
 				newLable.setBackground(Color.gray);

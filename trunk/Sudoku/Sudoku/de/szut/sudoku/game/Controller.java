@@ -15,8 +15,8 @@ public class Controller {
 	private Controller(Logic logic, IUI iui, GameData data){
 		this.logic = logic;
 		this.iui = iui;
-		iui.update(logic, data);
-		logic.addObserver((Observer) iui);
+		iui.update(logic, data); //Updatet die UI mit den Sudoku daten
+		logic.addObserver((Observer) iui); //Fügt einen Observer hinzu
 	}
 	public static Controller Instance(Logic logic, IUI iui, GameData data){
 		if (instance == null) {

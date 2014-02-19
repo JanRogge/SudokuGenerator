@@ -6,13 +6,13 @@ import java.util.Observable;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import de.szut.sudoku.game.IUI;
 import de.szut.sudoku.logic.GameData;
 
+@SuppressWarnings("serial")
 public class GameField extends JFrame implements IUI{
 
 	private JLabel fieldLbl;
@@ -33,6 +33,7 @@ public class GameField extends JFrame implements IUI{
 		setBounds(100, 100, 445, 500);
 		setLayout(null);		
 		
+		//Erzeugt die 81 Labels
 		spacey = 0;
 		for (x = 0; x < 9; x++){
 			spacex = 0;
@@ -59,16 +60,16 @@ public class GameField extends JFrame implements IUI{
 			}
 		}
 	}
-	@SuppressWarnings("deprecation")
 	@Override
 	public void update(Observable o, Object arg) {
 		data = (GameData) arg;
-		int [][] playableField = data.getField();
+		int [][] playableField = data.getplayableField();
+		//Setzt die Felder vom Generierten Feld
 		for (x = 0; x < 9; x++){
 			for (y = 0; y < 9; y++){
 				if (playableField[x][y] != 0){
 					fieldList[x][y].setText(playableField[x][y]+"");
-					fieldList[x][y].disable();
+					fieldList[x][y].setEnabled(false); //Disabled die Felder die vorgeschieben sind
 				}
 			}
 		}
