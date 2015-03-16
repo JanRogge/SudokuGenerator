@@ -1,2 +1,2 @@
 # Sudoku
-Auto-Generatet Sudokus
+Auto-Generated Sudokus
